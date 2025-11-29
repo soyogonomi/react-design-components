@@ -7,8 +7,18 @@ on:
         description: "A cheerful greeting"
         required: true
         default: "Hello world!!"
+      log-level:
+        type: choice
+        description: "Select the log level"
+        required: true
+        default: "info"
+        options:
+          - debug
+          - info
+          - warning
+          - error
 jobs:
   manual_job_01:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ inputs.greeting }}"
+      - run: echo "${{ inputs.greeting }} with log level set to ${{ inputs['log-level'] }}"
